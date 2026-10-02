@@ -6,7 +6,6 @@ import {
   Compass,
   Copy,
   ExternalLink,
-  Feather,
   Github,
   Search,
   Send,
@@ -14,6 +13,7 @@ import {
 } from "lucide-react";
 import { BenchSynth, BenchTerminal, CommandPalette, DraftEditor } from "@/components/bench";
 import { MotifCanvas } from "@/components/motif";
+import { StoryCase, StoryLeaf } from "@/components/quire";
 import { click, setClicks } from "@/lib/click";
 import {
   ART_PLATES,
@@ -25,7 +25,6 @@ import {
   type ArtPlate,
   type DevProject,
   type StudioLog,
-  type ShortStory,
   type TabId,
 } from "@/lib/studio-data";
 
@@ -35,7 +34,6 @@ type Modal =
   | { kind: "post"; title: string; text: string }
   | { kind: "art"; item: ArtPlate }
   | { kind: "log"; item: StudioLog }
-  | { kind: "story"; item: ShortStory }
   | { kind: "contact" }
   | null;
 
@@ -58,6 +56,7 @@ export function Vault() {
   const [angle, setAngle] = useState(24);
   const [depth, setDepth] = useState(8);
   const [palette, setPalette] = useState(false);
+  const [reading, setReading] = useState<(typeof STORIES)[number] | null>(null);
   const [sound, setSound] = useState(false);
   const [accent, setAccent] = useState<"cyan" | "amber">("cyan");
   const [bench, setBench] = useState<"plate" | "synth" | "shell">("plate");
@@ -78,6 +77,7 @@ export function Vault() {
       if (e.key === "Escape") {
         setModal(null);
         setPalette(false);
+        setReading(null);
       }
     };
     window.addEventListener("keydown", onKey);
@@ -415,33 +415,7 @@ export function Vault() {
           </section>
         )}
 
-        {show("stories") && (
-          <section className="space-y-3">
-            <SectionHead icon={<Feather className="size-5 text-gold" />} title="Short stories" count={stories.length} />
-            <p className="text-sm text-muted">
-              {stories.length === 0
-                ? "The shelf is empty. The next piece is yours."
-                : "Fiction. The repos are the record. These are not."}
-            </p>
-            {stories.length > 0 && (
-              <div className="grid gap-4 md:grid-cols-3">
-                {stories.map((s) => (
-                  <article key={s.id} className="plate-card flex flex-col overflow-hidden rounded-xl border border-line bg-card">
-                    <MotifCanvas motif={s.motif} className="h-28 w-full" label="" />
-                    <div className="flex flex-1 flex-col p-4">
-                      <p className="text-xs text-muted">Fiction · {s.minutes}</p>
-                      <h3 className="mt-2 font-serif text-xl">{s.title}</h3>
-                      <p className="mt-2 flex-1 text-sm text-muted">{s.lede}</p>
-                      <button type="button" className="mt-4 text-left text-sm text-gold" onClick={() => setModal({ kind: "story", item: s })}>
-                        Read
-                      </button>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            )}
-          </section>
-        )}
+        {show("stories") && <StoryCase stories={stories} onOpen={setReading} />}
 
         {tab === "marketing" && (
           <section className="rounded-2xl border border-line bg-surface p-5">
@@ -537,16 +511,6 @@ export function Vault() {
               </div>
             )}
             {modal.kind === "log" && <p className="text-sm leading-relaxed text-muted">{modal.item.body}</p>}
-            {modal.kind === "story" && (
-              <div className="space-y-4">
-                <p className="text-xs tracking-wide text-gold uppercase">Fiction · {modal.item.minutes}</p>
-                {modal.item.paragraphs.map((p) => (
-                  <p key={p} className="font-serif text-lg leading-relaxed text-fg">
-                    {p}
-                  </p>
-                ))}
-              </div>
-            )}
             {modal.kind === "contact" && (
               <div className="space-y-3 text-sm text-muted">
                 <p>This does not pretend to send a message. It opens your mail app.</p>
@@ -573,6 +537,7 @@ export function Vault() {
         />
       ) : null}
 
+      {reading ? <StoryLeaf story={reading} onClose={() => setReading(null)} /> : null}
       {toast ? <div className="fixed right-4 bottom-4 z-50 rounded-lg bg-cyan px-3 py-2 text-sm font-semibold text-bg">{toast}</div> : null}
     </div>
   );
