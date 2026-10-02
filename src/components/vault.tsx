@@ -418,23 +418,28 @@ export function Vault() {
         {show("stories") && (
           <section className="space-y-3">
             <SectionHead icon={<Feather className="size-5 text-gold" />} title="Short stories" count={stories.length} />
-            <p className="text-sm text-muted">Fiction. The repos are the record. These are not.</p>
-            {stories.length === 0 ? <Empty /> : null}
-            <div className="grid gap-4 md:grid-cols-3">
-              {stories.map((s) => (
-                <article key={s.id} className="plate-card flex flex-col overflow-hidden rounded-xl border border-line bg-card">
-                  <MotifCanvas motif={s.motif} className="h-28 w-full" label="" />
-                  <div className="flex flex-1 flex-col p-4">
-                    <p className="text-xs text-muted">Fiction · {s.minutes}</p>
-                    <h3 className="mt-2 font-serif text-xl">{s.title}</h3>
-                    <p className="mt-2 flex-1 text-sm text-muted">{s.lede}</p>
-                    <button type="button" className="mt-4 text-left text-sm text-gold" onClick={() => setModal({ kind: "story", item: s })}>
-                      Read
-                    </button>
-                  </div>
-                </article>
-              ))}
-            </div>
+            <p className="text-sm text-muted">
+              {stories.length === 0
+                ? "The shelf is empty. The next piece is yours."
+                : "Fiction. The repos are the record. These are not."}
+            </p>
+            {stories.length > 0 && (
+              <div className="grid gap-4 md:grid-cols-3">
+                {stories.map((s) => (
+                  <article key={s.id} className="plate-card flex flex-col overflow-hidden rounded-xl border border-line bg-card">
+                    <MotifCanvas motif={s.motif} className="h-28 w-full" label="" />
+                    <div className="flex flex-1 flex-col p-4">
+                      <p className="text-xs text-muted">Fiction · {s.minutes}</p>
+                      <h3 className="mt-2 font-serif text-xl">{s.title}</h3>
+                      <p className="mt-2 flex-1 text-sm text-muted">{s.lede}</p>
+                      <button type="button" className="mt-4 text-left text-sm text-gold" onClick={() => setModal({ kind: "story", item: s })}>
+                        Read
+                      </button>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
           </section>
         )}
 
