@@ -16,22 +16,29 @@ export function MotifCanvas({ motif, angle = 24, depth = 8, className, label }: 
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const w = canvas.clientWidth;
-    const h = canvas.clientHeight;
-    canvas.width = Math.max(1, Math.floor(w * dpr));
-    canvas.height = Math.max(1, Math.floor(h * dpr));
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = "#07090e";
-    ctx.fillRect(0, 0, w, h);
-    if (motif === "fern") drawFern(ctx, w, h, angle, depth);
-    if (motif === "sigil") drawSigil(ctx, w, h);
-    if (motif === "panda") drawPanda(ctx, w, h);
-    if (motif === "maze") drawMaze(ctx, w, h);
-    if (motif === "ring") drawRing(ctx, w, h);
+    const paint = () => {
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = canvas.clientWidth;
+      const h = canvas.clientHeight;
+      if (w < 2 || h < 2) return;
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "#07090e";
+      ctx.fillRect(0, 0, w, h);
+      if (motif === "fern") drawFern(ctx, w, h, angle, depth);
+      if (motif === "sigil") drawSigil(ctx, w, h);
+      if (motif === "panda") drawPanda(ctx, w, h);
+      if (motif === "maze") drawMaze(ctx, w, h);
+      if (motif === "ring") drawRing(ctx, w, h);
+    };
+    paint();
+    const obs = new ResizeObserver(paint);
+    obs.observe(canvas);
+    return () => obs.disconnect();
   }, [motif, angle, depth]);
 
   return (
@@ -52,21 +59,27 @@ function drawFern(
   depth: number,
 ) {
   const angle = (angleDeg * Math.PI) / 180;
-  ctx.strokeStyle = "#d7b56a";
-  ctx.lineWidth = 1.15;
-  const branch = (x: number, y: number, len: number, dir: number, d: number) => {
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  const branch = (x: number, y: number, len: number, dir: number, d: number, width: number) => {
     if (d === 0 || len < 2) return;
     const x2 = x + Math.cos(dir) * len;
     const y2 = y + Math.sin(dir) * len;
+    ctx.lineWidth = width;
+    ctx.strokeStyle = d <= 2 ? "#5ee0d4" : "#d7b56a";
+    ctx.globalAlpha = d <= 2 ? 0.85 : 1;
     ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.lineTo(x2, y2);
     ctx.stroke();
-    branch(x2, y2, len * 0.72, dir - angle, d - 1);
-    branch(x2, y2, len * 0.72, dir + angle, d - 1);
-    if (d > 3) branch(x2, y2, len * 0.62, dir, d - 1);
+    const next = Math.max(0.7, width * 0.72);
+    branch(x2, y2, len * 0.72, dir - angle, d - 1, next);
+    branch(x2, y2, len * 0.72, dir + angle, d - 1, next);
+    if (d > 3) branch(x2, y2, len * 0.58, dir, d - 1, next * 0.85);
   };
-  branch(w * 0.5, h - 18, h * 0.26, -Math.PI / 2, depth);
+  ctx.globalAlpha = 1;
+  branch(w * 0.5, h - 16, h * 0.28, -Math.PI / 2, depth, Math.max(2.2, h * 0.012));
+  ctx.globalAlpha = 1;
 }
 
 function drawSigil(ctx: CanvasRenderingContext2D, w: number, h: number) {

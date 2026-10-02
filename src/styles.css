@@ -18,6 +18,10 @@
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
   html {
     background: var(--color-bg);
     color: var(--color-fg);
@@ -36,6 +40,13 @@
 .dotgrid {
   background-image: radial-gradient(rgba(94, 224, 212, 0.14) 1px, transparent 0);
   background-size: 22px 22px;
+}
+
+.plate-card {
+  transition: border-color 160ms ease;
+}
+.plate-card:hover {
+  border-color: color-mix(in srgb, var(--color-gold) 50%, var(--color-line));
 }
 
 [data-accent="amber"] {
