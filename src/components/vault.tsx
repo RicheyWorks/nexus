@@ -216,13 +216,13 @@ export function Vault() {
       <main className="relative z-10 mx-auto max-w-6xl space-y-8 px-4 py-8">
         <section className="grid items-center gap-6 rounded-2xl border border-line bg-surface p-5 md:p-8 lg:grid-cols-2">
           <div>
-            <p className="text-xs tracking-widest text-cyan uppercase">Building in public · @TERPENE_PIRATE</p>
+            <p className="text-xs tracking-widest text-cyan uppercase">Private studio · @TERPENE_PIRATE</p>
             <h1 className="mt-3 font-serif text-4xl leading-none md:text-5xl">
               Plants by rule.
               <span className="mt-1 block text-gold">Engines by hand.</span>
             </h1>
             <p className="mt-4 max-w-xl text-muted">
-              Field kit, desktop pets, and plates grown in the browser. Public repos only. Nothing on the wall is minted.
+              Field kit, desktop pets, and plates grown in the browser. The repos are private. Nothing on the wall is minted.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {(["plate", "synth", "shell"] as const).map((b) => (
@@ -418,7 +418,7 @@ export function Vault() {
             <div className="mt-5 grid gap-3 md:grid-cols-3">
               <div className="rounded-xl border border-line bg-card p-4">
                 <p className="text-xs tracking-wide text-gold uppercase">Now</p>
-                <p className="mt-2 text-sm text-muted">This site and the public repos. GitHub is the store until something has a price.</p>
+                <p className="mt-2 text-sm text-muted">This site and the private repos. GitHub is the store until something has a price.</p>
               </div>
               <div className="rounded-xl border border-line bg-card p-4">
                 <p className="text-xs tracking-wide text-gold uppercase">When a plate is finished</p>
