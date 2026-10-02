@@ -58,7 +58,7 @@ export const DEV_PROJECTS: DevProject[] = [
 Repo is private:
 https://github.com/RicheyWorks/BlackJackPro
 
-Browser port, separate and public:
+Browser port, separate repo:
 https://github.com/RicheyWorks/BlackjackPro-web`,
     repo: "https://github.com/RicheyWorks/BlackJackPro",
     motif: "ring",
@@ -68,7 +68,7 @@ https://github.com/RicheyWorks/BlackjackPro-web`,
     id: "sudoku",
     title: "SudokuPro",
     tagline: "One board, three clients. The server keeps the solution.",
-    status: "Public repo",
+    status: "Private",
     type: "Multiplayer puzzle",
     tech: ["Java", "Spring"],
     description:
@@ -89,7 +89,7 @@ main after pass 30: 827fbdc`,
     id: "wholehog",
     title: "WholeHog",
     tagline: "Fourteen engines, one organism.",
-    status: "Public repo",
+    status: "Private",
     type: "Integration",
     tech: ["Java"],
     description:
@@ -111,7 +111,7 @@ Exhibit:
     id: "daedalus",
     title: "Daedalus 2",
     tagline: "Maze engine. The lantern plate is not the demo.",
-    status: "Public repo",
+    status: "Private",
     type: "Maze engine",
     tech: ["Java", "Spring"],
     description:
@@ -129,11 +129,11 @@ Exhibit:
     id: "dungeon",
     title: "AI Dungeon Master",
     tagline: "A table engine with a Spring door.",
-    status: "Public repo",
+    status: "Private",
     type: "Game server",
     tech: ["Java", "Spring"],
     description:
-      "Java core, Spring REST and STOMP, and clients for web and mobile. It is a public repo. This card does not claim a finished campaign or a player count.",
+      "Java core, Spring REST and STOMP, and clients for web and mobile. The repo is private. This card does not claim a finished campaign or a player count.",
     highlights: [
       "The engine is separate from the chat client",
       "No invented session count on this wall",
@@ -141,13 +141,13 @@ Exhibit:
     snippet: `https://github.com/RicheyWorks/ai-dungeon-master`,
     repo: "https://github.com/RicheyWorks/ai-dungeon-master",
     motif: "ring",
-    post: "AI Dungeon Master is a Java table engine with a Spring door.\n\nPublic repo. No player count on the card.\n\ngithub.com/RicheyWorks/ai-dungeon-master",
+    post: "AI Dungeon Master is a Java table engine with a Spring door.\n\nThe repo is private. No player count on the card.\n\ngithub.com/RicheyWorks/ai-dungeon-master",
   },
   {
     id: "csrbt",
     title: "CSRBT field kit",
     tagline: "A tree that changes its mind, and a phone kit for a wet meadow.",
-    status: "Public repo",
+    status: "Private",
     type: "Engine + field instruments",
     tech: ["Java", "L-systems"],
     description:
@@ -196,7 +196,7 @@ https://github.com/RicheyWorks/computerpets-ecosystem`,
     id: "lb",
     title: "LoadBalancerPro",
     tagline: "Java reverse proxy. The lab stays behind a door.",
-    status: "Public repo",
+    status: "Private",
     type: "Proxy",
     tech: ["Java", "Spring"],
     description:
