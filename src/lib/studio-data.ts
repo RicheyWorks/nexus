@@ -40,6 +40,110 @@ export const TECHS = ["All", "Java", "TypeScript", "L-systems", "Spring"] as con
 
 export const DEV_PROJECTS: DevProject[] = [
   {
+    id: "blackjack",
+    title: "BlackJack Pro",
+    tagline: "Play-money table. The rules engine has no UI in it.",
+    status: "Private · desktop 1.0.0",
+    type: "Table game",
+    tech: ["Java"],
+    description:
+      "Six-deck shoe, 3:2, late surrender, dealer stands on soft 17. Swing is the desktop. A libGDX front end shares the same engine, including an Android build. The real-money platform folder is a design skeleton and is not a product.",
+    highlights: [
+      "Twenty-four table looks, shared by Swing and libGDX",
+      "393 tests on the README, counted 2 Oct 2026",
+      "Windows installer built that day. Not yet installed. The 1.0.0 tag was not on the README.",
+    ],
+    snippet: `gradlew.bat :swing:run
+
+Repo is private:
+https://github.com/RicheyWorks/BlackJackPro
+
+Browser port, separate and public:
+https://github.com/RicheyWorks/BlackjackPro-web`,
+    repo: "https://github.com/RicheyWorks/BlackJackPro",
+    motif: "ring",
+    post: "BlackJack Pro is a play-money table. The rules engine has no UI in it.\n\nSwing desktop is at 1.0.0. The real-money folder is a design skeleton, not a casino.\n\nThe repo is private.",
+  },
+  {
+    id: "sudoku",
+    title: "SudokuPro",
+    tagline: "One board, three clients. The server keeps the solution.",
+    status: "Public repo",
+    type: "Multiplayer puzzle",
+    tech: ["Java", "Spring"],
+    description:
+      "Spring Boot, PostgreSQL, and Redis. A JavaFX client and a browser table talk to the same API. Duels, a daily, and a weekly. Hardening passes 27 through 30 landed on main on 2 Oct 2026.",
+    highlights: [
+      "The solution never leaves the server",
+      "Redis outage is answered, not ignored",
+      "Web client is played, not only read",
+    ],
+    snippet: `https://github.com/RicheyWorks/sudokupro
+
+main after pass 30: 827fbdc`,
+    repo: "https://github.com/RicheyWorks/sudokupro",
+    motif: "maze",
+    post: "SudokuPro keeps the solution on the server.\n\nSpring Boot, a JavaFX client, and a browser table on the same API. Passes 27 through 30 are on main.\n\ngithub.com/RicheyWorks/sudokupro",
+  },
+  {
+    id: "wholehog",
+    title: "WholeHog",
+    tagline: "Fourteen engines, one organism.",
+    status: "Public repo",
+    type: "Integration",
+    tech: ["Java"],
+    description:
+      "The door into the CSRBT ecosystem. The index, the store, the wire, the fleet, and the chaos seam are stood up together and checked against one oracle. Start here if one repo is not enough.",
+    highlights: [
+      "Plain-English map is ECOSYSTEM.md",
+      "SmokeHouse is the store. CSRBT is the index.",
+      "A fault plan can crash a write and replay it once",
+    ],
+    snippet: `https://github.com/RicheyWorks/WholeHog/blob/main/ECOSYSTEM.md
+
+Exhibit:
+./gradlew run`,
+    repo: "https://github.com/RicheyWorks/WholeHog",
+    motif: "fern",
+    post: "WholeHog is the door. Fourteen engines, one organism.\n\nIf a single repo is not enough, start with the plain-English map.\n\ngithub.com/RicheyWorks/WholeHog",
+  },
+  {
+    id: "daedalus",
+    title: "Daedalus 2",
+    tagline: "Maze engine. The lantern plate is not the demo.",
+    status: "Public repo",
+    type: "Maze engine",
+    tech: ["Java", "Spring"],
+    description:
+      "Multi-module maze generation and solving. The Hilbert lantern on the wall is a studio plate of this work, not a running copy of the engine.",
+    highlights: [
+      "Generation and solving are the product",
+      "The picture on the wall does not replace the repo",
+    ],
+    snippet: `https://github.com/RicheyWorks/Daedalus2`,
+    repo: "https://github.com/RicheyWorks/Daedalus2",
+    motif: "maze",
+    post: "Daedalus 2 is the maze engine.\n\nThe lantern plate is a picture of the idea. The engine is the repo.\n\ngithub.com/RicheyWorks/Daedalus2",
+  },
+  {
+    id: "dungeon",
+    title: "AI Dungeon Master",
+    tagline: "A table engine with a Spring door.",
+    status: "Public repo",
+    type: "Game server",
+    tech: ["Java", "Spring"],
+    description:
+      "Java core, Spring REST and STOMP, and clients for web and mobile. It is a public repo. This card does not claim a finished campaign or a player count.",
+    highlights: [
+      "The engine is separate from the chat client",
+      "No invented session count on this wall",
+    ],
+    snippet: `https://github.com/RicheyWorks/ai-dungeon-master`,
+    repo: "https://github.com/RicheyWorks/ai-dungeon-master",
+    motif: "ring",
+    post: "AI Dungeon Master is a Java table engine with a Spring door.\n\nPublic repo. No player count on the card.\n\ngithub.com/RicheyWorks/ai-dungeon-master",
+  },
+  {
     id: "csrbt",
     title: "CSRBT field kit",
     tagline: "A tree that changes its mind, and a phone kit for a wet meadow.",
@@ -69,7 +173,7 @@ https://github.com/RicheyWorks/WholeHog`,
     id: "pets",
     title: "ComputerPets",
     tagline: "Desktop companions. Rui walks first.",
-    status: "Public repo",
+    status: "Private flagship",
     type: "Desktop companions",
     tech: ["Java", "TypeScript"],
     description:
@@ -176,6 +280,15 @@ export const ART_PLATES: ArtPlate[] = [
 ];
 
 export const LOGS: StudioLog[] = [
+  {
+    id: "log-oct2",
+    title: "What moved on 2 Oct",
+    date: "2026-10-02",
+    read: "2 min",
+    tags: ["Java"],
+    snippet: "Four kit grammars, four Sudoku passes, a still pet, and a blackjack desktop at 1.0.0.",
+    body: "CSRBT main moved through ADR-273 to ADR-276: a list of numbers is one grammar, a coordinate is one grammar, a check on a widget is not a check on the plant, and a check must not write the value it then reads. ComputerPets main is the reduced-motion pass: the main pet and a house visitor can be drawn still. SudokuPro took hardening passes 27 through 30 onto main, ending at 827fbdc. BlackJack Pro's Swing desktop is at 1.0.0. The Windows installer was built and not installed. The README at that commit still said the tag had not been cut.",
+  },
   {
     id: "log-kit",
     title: "The pile is a database",

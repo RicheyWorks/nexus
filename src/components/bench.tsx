@@ -127,6 +127,56 @@ const LABELS = ["Hook", "Mechanism", "Snag", "Reply"];
 
 const THREADS: { id: string; title: string; beats: string[] }[] = [
   {
+    id: "blackjack",
+    title: "BlackJack Pro",
+    beats: [
+      "BlackJack Pro is a play-money table. The rules engine has no UI in it.",
+      "Six-deck shoe, 3:2, late surrender. Swing and a libGDX front end share that engine.",
+      "The real-money folder is a design skeleton. It is not a casino, and it is not licensed.",
+      "The repo is private. Desktop is at 1.0.0. The tag was not on the README.",
+    ],
+  },
+  {
+    id: "sudoku",
+    title: "SudokuPro",
+    beats: [
+      "SudokuPro keeps the solution on the server.",
+      "Spring Boot, a JavaFX client, and a browser table. Same API.",
+      "A Redis outage is answered. Results recorded while it is down get replayed when it returns.",
+      "Passes 27 through 30 are on main.\n\ngithub.com/RicheyWorks/sudokupro",
+    ],
+  },
+  {
+    id: "wholehog",
+    title: "WholeHog",
+    beats: [
+      "WholeHog is the door. Fourteen engines, one organism.",
+      "The index, the store, the wire, and the fleet stand up together.",
+      "A fault plan can crash a write. The journal replays it once.",
+      "If one repo is not enough, start with the plain-English map.\n\ngithub.com/RicheyWorks/WholeHog",
+    ],
+  },
+  {
+    id: "daedalus",
+    title: "Daedalus 2",
+    beats: [
+      "Daedalus 2 is the maze engine.",
+      "Generation and solving. Java, multi-module.",
+      "The lantern plate is a picture of the idea. It is not a running copy.",
+      "github.com/RicheyWorks/Daedalus2",
+    ],
+  },
+  {
+    id: "dungeon",
+    title: "AI Dungeon Master",
+    beats: [
+      "AI Dungeon Master is a Java table engine with a Spring door.",
+      "REST and STOMP. Clients for web and mobile sit in the same repo.",
+      "This card does not claim a finished campaign or a player count.",
+      "github.com/RicheyWorks/ai-dungeon-master",
+    ],
+  },
+  {
     id: "csrbt",
     title: "CSRBT field kit",
     beats: [
