@@ -6,6 +6,7 @@ import {
   Compass,
   Copy,
   ExternalLink,
+  Feather,
   Github,
   Search,
   Send,
@@ -18,11 +19,13 @@ import {
   ART_PLATES,
   DEV_PROJECTS,
   LOGS,
+  STORIES,
   TECHS,
   includesQuery,
   type ArtPlate,
   type DevProject,
   type StudioLog,
+  type ShortStory,
   type TabId,
 } from "@/lib/studio-data";
 
@@ -32,6 +35,7 @@ type Modal =
   | { kind: "post"; title: string; text: string }
   | { kind: "art"; item: ArtPlate }
   | { kind: "log"; item: StudioLog }
+  | { kind: "story"; item: ShortStory }
   | { kind: "contact" }
   | null;
 
@@ -40,6 +44,7 @@ const TABS: { id: TabId; label: string }[] = [
   { id: "dev", label: "Dev lab" },
   { id: "art", label: "Art vault" },
   { id: "logs", label: "Dev logs" },
+  { id: "stories", label: "Stories" },
   { id: "marketing", label: "X studio" },
 ];
 
@@ -103,6 +108,13 @@ export function Vault() {
         (p) =>
           includesQuery(p.title + p.snippet + p.body, query) &&
           (tech === "All" || p.tags.includes(tech)),
+      ),
+    [query, tech],
+  );
+  const stories = useMemo(
+    () =>
+      STORIES.filter(
+        (s) => tech === "All" && includesQuery(s.title + s.lede + s.paragraphs.join(" "), query),
       ),
     [query, tech],
   );
@@ -285,7 +297,7 @@ export function Vault() {
               <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search the kit, pets, plates"
+                placeholder="Search the kit, pets, plates, stories"
                 className="w-full rounded-lg border border-line bg-bg py-2 pr-3 pl-9 text-sm outline-none focus:border-cyan"
               />
             </div>
@@ -403,6 +415,29 @@ export function Vault() {
           </section>
         )}
 
+        {show("stories") && (
+          <section className="space-y-3">
+            <SectionHead icon={<Feather className="size-5 text-gold" />} title="Short stories" count={stories.length} />
+            <p className="text-sm text-muted">Fiction. The repos are the record. These are not.</p>
+            {stories.length === 0 ? <Empty /> : null}
+            <div className="grid gap-4 md:grid-cols-3">
+              {stories.map((s) => (
+                <article key={s.id} className="plate-card flex flex-col overflow-hidden rounded-xl border border-line bg-card">
+                  <MotifCanvas motif={s.motif} className="h-28 w-full" label="" />
+                  <div className="flex flex-1 flex-col p-4">
+                    <p className="text-xs text-muted">Fiction · {s.minutes}</p>
+                    <h3 className="mt-2 font-serif text-xl">{s.title}</h3>
+                    <p className="mt-2 flex-1 text-sm text-muted">{s.lede}</p>
+                    <button type="button" className="mt-4 text-left text-sm text-gold" onClick={() => setModal({ kind: "story", item: s })}>
+                      Read
+                    </button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
         {tab === "marketing" && (
           <section className="rounded-2xl border border-line bg-surface p-5">
             <h2 className="font-serif text-3xl">X studio</h2>
@@ -496,7 +531,17 @@ export function Vault() {
                 </div>
               </div>
             )}
-            {modal.kind === "log" && <p className="text-sm text-muted">{modal.item.body}</p>}
+            {modal.kind === "log" && <p className="text-sm leading-relaxed text-muted">{modal.item.body}</p>}
+            {modal.kind === "story" && (
+              <div className="space-y-4">
+                <p className="text-xs tracking-wide text-gold uppercase">Fiction · {modal.item.minutes}</p>
+                {modal.item.paragraphs.map((p) => (
+                  <p key={p} className="font-serif text-lg leading-relaxed text-fg">
+                    {p}
+                  </p>
+                ))}
+              </div>
+            )}
             {modal.kind === "contact" && (
               <div className="space-y-3 text-sm text-muted">
                 <p>This does not pretend to send a message. It opens your mail app.</p>

@@ -341,7 +341,7 @@ export function CommandPalette({
   sound,
 }: {
   onClose: () => void;
-  onGo: (tab: "all" | "dev" | "art" | "logs" | "marketing") => void;
+  onGo: (tab: "all" | "dev" | "art" | "logs" | "stories" | "marketing") => void;
   onAccent: (accent: "cyan" | "amber") => void;
   onSound: () => void;
   sound: boolean;
@@ -352,6 +352,7 @@ export function CommandPalette({
     { title: "Dev lab", run: () => onGo("dev") },
     { title: "Art vault", run: () => onGo("art") },
     { title: "Dev logs", run: () => onGo("logs") },
+    { title: "Short stories", run: () => onGo("stories") },
     { title: "X studio", run: () => onGo("marketing") },
     { title: "Accent: cyan", run: () => onAccent("cyan") },
     { title: "Accent: amber", run: () => onAccent("amber") },
