@@ -288,44 +288,7 @@ export type ShortStory = {
   paragraphs: string[];
 };
 
-export const STORIES: ShortStory[] = [
-  {
-    id: "angle",
-    title: "Twenty-four degrees",
-    minutes: "1 min",
-    motif: "fern",
-    lede: "He widened the crown. The plate drew the knot, then forgot it.",
-    paragraphs: [
-      "The plate started at twenty-four. A trunk, two branches, a shorter trunk. He dragged the angle because the crown looked mean.",
-      "At thirty-one the tips touched the brass and came back down the same lines, cyan over gold, a plant drawing on top of itself. He left it there long enough to see the knot. Then he put the slider back.",
-      "The rule does not keep a picture of the mistake. The next draw is only the angle it is given. A wider crown is a different plant. It is not this one, improved.",
-    ],
-  },
-  {
-    id: "still",
-    title: "The still room",
-    minutes: "1 min",
-    motif: "panda",
-    lede: "The house asked for less motion. The pet stayed, and did not perform.",
-    paragraphs: [
-      "The setting said less motion. He expected a broken pet and got a portrait.",
-      "Rui stood on the desk, weight on the near paw, tail a comma. The chickadee in the window was a shape, not a path. Nothing twitched to prove it was alive. The house had asked for still, and the drawing answered with still.",
-      "He watched longer than a loop. A thing that can stop is not a sticker. It is waiting. When the setting came off, the paw moved first, then the tail, then the bird left along the top of the window, as if the glass had been a branch the whole time.",
-    ],
-  },
-  {
-    id: "signal",
-    title: "No signal",
-    minutes: "1 min",
-    motif: "sigil",
-    lede: "The meadow had no bars. The page stayed on the machine, and that was enough.",
-    paragraphs: [
-      "The meadow did not have a bar of service. He opened the kit anyway.",
-      "Two counts. A coordinate that had to be one pair, not a latitude left alone in a cell of its own. A list that read twelve and five as two numbers, and refused a letter hiding in the digits. The page did not try to leave the machine. There was nowhere for it to go.",
-      "He walked the rest of the transect with the phone dark in his pocket. The record was already true. Sending it would only have made it loud.",
-    ],
-  },
-];
+export const STORIES: ShortStory[] = [];
 
 export const LOGS: StudioLog[] = [
   {
