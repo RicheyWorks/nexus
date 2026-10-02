@@ -151,7 +151,7 @@ export function Vault() {
           </nav>
           <div className="flex items-center gap-2">
             <button type="button" onClick={() => setPalette(true)} className="hidden rounded-lg border border-line px-3 py-2 text-sm text-muted md:inline">
-              Cmd+K
+              Find
             </button>
             <button
               type="button"
@@ -170,7 +170,7 @@ export function Vault() {
               onClick={() => setAccent((a) => (a === "cyan" ? "amber" : "cyan"))}
               className="hidden rounded-lg border border-line px-3 py-2 text-sm text-muted md:inline"
             >
-              {accent}
+              {accent === "cyan" ? "Cyan" : "Amber"}
             </button>
             <a href="https://x.com/TERPENE_PIRATE" className="rounded-lg border border-line px-3 py-2 text-sm text-muted">
               X
@@ -240,11 +240,15 @@ export function Vault() {
               ))}
             </div>
           </div>
-          <div className="overflow-hidden rounded-xl border border-line bg-bg p-3">
+          <div className="overflow-hidden rounded-xl border border-gold/40 bg-bg">
             {bench === "plate" && (
               <>
-                <MotifCanvas motif="fern" angle={angle} depth={depth} className="h-64 w-full" label="Live fern plate" />
-                <div className="grid grid-cols-2 gap-3 p-3 text-sm text-muted">
+                <MotifCanvas motif="fern" angle={angle} depth={depth} className="h-72 w-full" label="Live fern plate" />
+                <div className="flex items-center justify-between border-t border-line px-3 py-2 text-xs tracking-wide text-muted uppercase">
+                  <span>Plate I · live rule</span>
+                  <span className="text-gold">Not a mint</span>
+                </div>
+                <div className="grid grid-cols-2 gap-3 px-3 pb-3 text-sm text-muted">
                   <label>
                     Angle {angle}
                     <input className="mt-1 block w-full accent-gold" type="range" min={12} max={40} value={angle} onChange={(e) => setAngle(Number(e.target.value))} />
@@ -256,19 +260,19 @@ export function Vault() {
                 </div>
               </>
             )}
-            {bench === "synth" && <BenchSynth />}
-            {bench === "shell" && <BenchTerminal />}
+            {bench === "synth" && <div className="p-3"><BenchSynth /></div>}
+            {bench === "shell" && <div className="p-3"><BenchTerminal /></div>}
           </div>
         </section>
 
-        <section className="grid grid-cols-3 gap-px overflow-hidden rounded-xl border border-line bg-line">
+        <section className="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-3">
           {[
-            ["210", "Pet kinds. Rui walks first."],
-            ["33", "Kit pages. No signal required."],
-            ["0", "Claimed mints."],
-          ].map(([n, s]) => (
-            <div key={n} className="bg-bg px-3 py-3">
-              <b className="block font-serif text-2xl">{n}</b>
+            ["210", "Pet kinds. Rui walks first.", false],
+            ["33", "Kit pages. No signal required.", false],
+            ["0", "Claimed mints.", true],
+          ].map(([n, s, gold]) => (
+            <div key={String(n)} className="bg-bg px-4 py-4">
+              <b className={gold ? "block font-serif text-3xl text-gold" : "block font-serif text-3xl"}>{n}</b>
               <span className="text-xs text-muted">{s}</span>
             </div>
           ))}
@@ -282,7 +286,7 @@ export function Vault() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search the kit, pets, plates"
-                className="w-full rounded-lg border border-line bg-bg py-2 pr-3 pl-9 text-sm"
+                className="w-full rounded-lg border border-line bg-bg py-2 pr-3 pl-9 text-sm outline-none focus:border-cyan"
               />
             </div>
             <button type="button" onClick={() => setList((v) => !v)} className="rounded-lg border border-line px-3 py-2 text-sm text-muted">
@@ -313,7 +317,7 @@ export function Vault() {
             {devs.length === 0 ? <Empty /> : null}
             <div className={list ? "space-y-3" : "grid gap-4 md:grid-cols-2"}>
               {devs.map((p) => (
-                <article key={p.id} className="flex flex-col rounded-xl border border-line bg-card">
+                <article key={p.id} className="plate-card flex flex-col overflow-hidden rounded-xl border border-line bg-card">
                   <MotifCanvas motif={p.motif} className="h-36 w-full rounded-t-xl" label="" />
                   <div className="flex flex-1 flex-col p-4">
                     <p className="text-xs tracking-wide text-muted uppercase">
@@ -356,7 +360,7 @@ export function Vault() {
             {plates.length === 0 ? <Empty /> : null}
             <div className={list ? "space-y-3" : "grid gap-4 md:grid-cols-2"}>
               {plates.map((a) => (
-                <article key={a.id} className="overflow-hidden rounded-xl border border-line bg-card">
+                <article key={a.id} className="plate-card overflow-hidden rounded-xl border border-line bg-card">
                   <MotifCanvas motif={a.motif} angle={angle} className="h-52 w-full" label={a.title} />
                   <div className="p-4">
                     <p className="text-xs tracking-wide text-gold uppercase">Studio plate · not minted</p>
@@ -384,7 +388,7 @@ export function Vault() {
             {logs.length === 0 ? <Empty /> : null}
             <div className="grid gap-4 md:grid-cols-3">
               {logs.map((l) => (
-                <article key={l.id} className="flex flex-col rounded-xl border border-line bg-card p-4">
+                <article key={l.id} className="plate-card flex flex-col rounded-xl border border-line bg-card p-4">
                   <p className="text-xs text-muted">
                     {l.date} · {l.read}
                   </p>
