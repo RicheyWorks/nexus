@@ -9,3 +9,5 @@ attachments
 .env.*
 *.log
 .DS_Store
+
+!.env.example
