@@ -57,4 +57,4 @@ them in a release. Art plates are studio studies;
 they do not represent minted tokens or a running copy of another project.
 RicheyWorks project repositories are private and their links require authorized
 GitHub access. Verify a linked project's own README and code before relying on
-its feature or release status. No license file is included in this checkout.
+its feature or release status. RicheyWorks code is licensed under [MIT](LICENSE).
